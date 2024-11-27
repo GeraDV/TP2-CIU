@@ -1,76 +1,103 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-interface Manufacturer {
+interface Fabricante {
   id: number;
   nombre: string;
+  direccion: string;
+  numeroContacto: string;
+  pathImgPerfil: string;
 }
 
-interface Component {
+interface Componente {
   id: number;
   nombre: string;
+  descripcion: string;
 }
 
-interface Product {
+interface Producto {
   id: number;
   nombre: string;
   descripcion: string;
   precio: number;
   imageUrl: string;
-  manufacturers: Manufacturer[];
-  components: Component[];
+  fabricantes: Fabricante[];
+  componentes: Componente[];
 }
 
+console.log("Ejecutando");
 const ProductDetail = () => {
-  // Obtén el ID del producto desde la URL
   const { id } = useParams<{ id: string }>();
-  const [product, setProduct] = useState<Product | null>(null);
+  const [producto, setProducto] = useState<Producto | null>(null);
+  console.log("Ejecutando cargarProducto con ID:", id);
 
-  // Usamos useEffect para cargar los datos del producto cuando se monta el componente
+  async function cargarProducto(id: string | undefined) {
+    try {
+      const respuesta = await fetch(`http://localhost:5000/productos/${id}`);
+      const productoData: Producto = await respuesta.json();
+
+      const respuestaFabricantes = await fetch(`http://localhost:5000/productos/${id}/fabricantes`)
+      const productoConFabricantes = await respuestaFabricantes.json();
+      productoData.fabricantes = productoConFabricantes.Fabricantes;
+
+      const respuestaComponentes = await fetch(`http://localhost:5000/productos/${id}/componentes`)
+      const productoConComponentes = await respuestaComponentes.json();
+      productoData.componentes = productoConComponentes.Componentes;
+
+      setProducto(productoData)
+
+    } catch (error) {
+      console.error('Error fetching product details:', error);
+    }
+  }
+
   useEffect(() => {
-    fetch(`http://localhost:5000/productos/${id}`)
-      .then((response) => response.json())
-      .then((data) => setProduct(data))
-      .catch((error) => console.error('Error fetching product details:', error));
+    cargarProducto(id);
   }, [id]);
 
-  if (!product) {
+  if (!producto) {
     return <div>Cargando...</div>;
   }
 
   return (
     <div className="container mt-5">
-      <h2>{product.nombre}</h2>
-      
-      <div className="row">
+      <h2>{producto.nombre}</h2>
+
         <div className="col-md-6">
-          <img src={product.imageUrl} alt={product.nombre} className="img-fluid" />
+          <img src={producto.imageUrl} alt={producto.nombre} className="img-fluid" />
         </div>
         <div className="col-md-6">
-          <p><strong>Descripción:</strong> {product.descripcion}</p>
-          <p><strong>Precio:</strong> ${product.precio}</p>
+          <p><strong>Descripción:</strong> {producto.descripcion}</p>
+          <p><strong>Precio:</strong> ${producto.precio}</p>
         </div>
-      </div>
 
       <section>
         <h3>Fabricantes</h3>
         <ul>
-          {product.manufacturers.map((manufacturer) => (
-            <li key={manufacturer.id}>
-              <a href={`/fabricantes/${manufacturer.id}`}>{manufacturer.nombre}</a>
-            </li>
-          ))}
+          {producto?.fabricantes?.length > 0 ? (
+            producto.fabricantes.map((fabricante) => (
+              <li key={fabricante.id}>
+                <a href={`/fabricantes/${fabricante.id}`}>{fabricante.nombre}</a>
+              </li>
+            ))
+          ) : (
+            <p>No hay fabricantes registrados para este producto.</p>
+          )}
         </ul>
       </section>
 
       <section>
         <h3>Componentes</h3>
         <ul>
-          {product.components.map((component) => (
-            <li key={component.id}>
-              <a href={`/componentes/${component.id}`}>{component.nombre}</a>
-            </li>
-          ))}
+          {producto?.componentes?.length > 0 ? (
+            producto.componentes.map((componente) => (
+              <li key={componente.id}>
+                <a href={`/fabricantes/${componente.id}`}>{componente.nombre}</a>
+              </li>
+            ))
+          ) : (
+            <p>No hay componentes registrados para este producto.</p>
+          )}
         </ul>
       </section>
     </div>
