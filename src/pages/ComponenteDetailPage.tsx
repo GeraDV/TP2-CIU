@@ -1,18 +1,18 @@
-import ProductList from '../components/ProductList';
+import ComponenteDetail from '../components/ComponenteDetail';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const ProductCatalog = () => {
+const ComponenteDetailPage = () => {
   return (
     <div>
       <Header />
       <main className="container mt-5">
-        <h2>Catálogo de Productos</h2>
-        <ProductList />
+        <h2>Componente:</h2>
+        <ComponenteDetail />
       </main>
       <Footer />
     </div>
   );
 };
 
-export default ProductCatalog;
+export default ComponenteDetailPage;

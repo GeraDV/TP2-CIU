@@ -1,4 +1,4 @@
-import ProductDetail from '../components/ProductDetail';
+import ProductDetail from '../components/ProductoDetail';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 

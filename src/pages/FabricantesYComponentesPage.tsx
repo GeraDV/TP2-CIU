@@ -1,9 +1,9 @@
-import ManufacturerList from '../components/ManufacturerList';
-import ComponentList from '../components/ComponentList';
+import FabricantesList from '../components/FabricantesList';
+import ComponentesList from '../components/ComponentesList';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const ManufacturersAndComponents = () => {
+const FabricantesYComponentes = () => {
   return (
     <div>
       <Header />
@@ -11,14 +11,14 @@ const ManufacturersAndComponents = () => {
         <h2>Fabricantes y Componentes</h2>
         
         <h3>Fabricantes</h3>
-        <ManufacturerList />
+        <FabricantesList />
 
         <h3>Componentes</h3>
-        <ComponentList />
+        <ComponentesList />
       </main>
       <Footer />
     </div>
   );
 };
 
-export default ManufacturersAndComponents;
+export default FabricantesYComponentes;
