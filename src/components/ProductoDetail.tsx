@@ -54,7 +54,7 @@ const ProductDetail = () => {
   }, [id]);
 
   if (!producto) {
-    return <div>Cargando...</div>;
+    return <div>Producto no encontrado</div>;
   }
 
   return (
@@ -90,7 +90,7 @@ const ProductDetail = () => {
           {producto?.componentes?.length > 0 ? (
             producto.componentes.map((componente) => (
               <li key={componente.id}>
-                <a href={`/fabricantes/${componente.id}`}>{componente.nombre}</a>
+                <a href={`/componentes/${componente.id}`}>{componente.nombre}</a>
               </li>
             ))
           ) : (

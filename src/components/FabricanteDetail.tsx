@@ -7,18 +7,17 @@ interface Fabricante {
   direccion: string;
   numeroContacto: string;
   pathImgPerfil: string;
+  productos: Producto[];
 }
 
 
-// interface Producto {
-//   id: number;
-//   nombre: string;
-//   descripcion: string;
-//   precio: number;
-//   imageUrl: string;
-//   fabricantes: Fabricante[];
-//   componentes: Componente[];
-// }
+interface Producto {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  imageUrl: string;
+}
 
 const FabricanteDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -26,12 +25,13 @@ const FabricanteDetail = () => {
 
   async function cargarFabricante(id: string | undefined) {
     try {
+      
       const respuesta = await fetch(`http://localhost:5000/fabricantes/${id}`);
       const fabricanteData: Fabricante = await respuesta.json();
 
-      // const respuestaFabricantes = await fetch(`http://localhost:5000/productos/${id}/fabricantes`)
-      // const productoConFabricantes = await respuestaFabricantes.json();
-      // fabricanteData.fabricantes = productoConFabricantes.Fabricantes;
+      const respuestaProducto = await fetch(`http://localhost:5000/fabricantes/${id}/productos`)
+      const fabricanteConProductos = await respuestaProducto.json();
+      fabricanteData.productos = fabricanteConProductos.Productos;
 
       setFabricante(fabricanteData)
 
@@ -45,7 +45,7 @@ const FabricanteDetail = () => {
   }, [id]);
 
   if (!fabricante) {
-    return <div>Cargando...</div>;
+    return <div>Fabricante no encontrado</div>;
   }
 
   return (
@@ -60,20 +60,20 @@ const FabricanteDetail = () => {
           <p><strong>Contacto:</strong> ${fabricante.numeroContacto}</p>
         </div>
 
-      {/* <section>
+      <section>
         <h3>Productos</h3>
         <ul>
-          {fabricante?.fabricantes?.length > 0 ? (
-            fabricante.fabricantes.map((fabricante) => (
-              <li key={fabricante.id}>
-                <a href={`/fabricantes/${fabricante.id}`}>{fabricante.nombre}</a>
+          {fabricante?.productos?.length > 0 ? (
+            fabricante.productos.map((producto) => (
+              <li key={producto.id}>
+                <a href={`/productos/${producto.id}`}>{producto.nombre}</a>
               </li>
             ))
           ) : (
-            <p>No hay fabricantes registrados para este producto.</p>
+            <p>No hay productos registrados para este fabricante.</p>
           )}
         </ul>
-      </section> */}
+      </section>
     </div>
   );
 };

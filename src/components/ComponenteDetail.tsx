@@ -5,20 +5,18 @@ interface Componente {
   id: number;
   nombre: string;
   descripcion: string;
+  productos: Producto[];
 }
 
+interface Producto {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  imageUrl: string;
+}
 
-// interface Producto {
-//   id: number;
-//   nombre: string;
-//   descripcion: string;
-//   precio: number;
-//   imageUrl: string;
-//   fabricantes: Fabricante[];
-//   componentes: Componente[];
-// }
-
-const FabricanteDetail = () => {
+const ComponenteDetail = () => {
   const { id } = useParams<{ id: string }>();
   const [componente, setComponente] = useState<Componente | null>(null);
 
@@ -27,9 +25,9 @@ const FabricanteDetail = () => {
       const respuesta = await fetch(`http://localhost:5000/componentes/${id}`);
       const componenteData: Componente = await respuesta.json();
 
-      // const respuestaFabricantes = await fetch(`http://localhost:5000/productos/${id}/fabricantes`)
-      // const productoConFabricantes = await respuestaFabricantes.json();
-      // fabricanteData.fabricantes = productoConFabricantes.Fabricantes;
+      const respuestaProducto = await fetch(`http://localhost:5000/componentes/${id}/productos`)
+      const componenteConProducto = await respuestaProducto.json();
+      componenteData.productos = componenteConProducto.Productos;
 
       setComponente(componenteData)
 
@@ -43,7 +41,7 @@ const FabricanteDetail = () => {
   }, [id]);
 
   if (!componente) {
-    return <div>Cargando...</div>;
+    return <div>Componente no encontrado</div>;
   }
 
   return (
@@ -53,22 +51,22 @@ const FabricanteDetail = () => {
           <p><strong>Descripción:</strong> ${componente.descripcion}</p>
         </div>
 
-      {/* <section>
+      <section>
         <h3>Productos</h3>
         <ul>
-          {fabricante?.fabricantes?.length > 0 ? (
-            fabricante.fabricantes.map((fabricante) => (
-              <li key={fabricante.id}>
-                <a href={`/fabricantes/${fabricante.id}`}>{fabricante.nombre}</a>
+          {componente?.productos?.length > 0 ? (
+            componente.productos.map((producto) => (
+              <li key={producto.id}>
+                <a href={`/productos/${producto.id}`}>{producto.nombre}</a>
               </li>
             ))
           ) : (
-            <p>No hay fabricantes registrados para este producto.</p>
+            <p>No hay productos registrados para este componente.</p>
           )}
         </ul>
-      </section> */}
+      </section>
     </div>
   );
 };
 
-export default FabricanteDetail;
+export default ComponenteDetail;
