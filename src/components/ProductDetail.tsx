@@ -25,11 +25,9 @@ interface Producto {
   componentes: Componente[];
 }
 
-console.log("Ejecutando");
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const [producto, setProducto] = useState<Producto | null>(null);
-  console.log("Ejecutando cargarProducto con ID:", id);
 
   async function cargarProducto(id: string | undefined) {
     try {
