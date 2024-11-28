@@ -8,7 +8,6 @@ const FabricanteDetailPage = () => {
     <div className={Style.bodyHome}>
       <Header />
       <main className="container mt-5">
-        <h2>Fabricante:</h2>
         <FabricanteDetail />
       </main>
       <Footer />

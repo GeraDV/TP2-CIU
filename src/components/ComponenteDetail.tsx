@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import img from '../assets/logoEmpresa.jpg';
+import Style from '../components/CardDeatails.module.css'
 
 interface Componente {
   id: number;
@@ -46,25 +48,28 @@ const ComponenteDetail = () => {
 
   return (
     <div className="container mt-5">
-      <h2>{componente.nombre}</h2>
+      <h2 className='pb-3'>{componente.nombre}</h2>
+      <div className="row">
         <div className="col-md-6">
-          <p><strong>Descripción:</strong> ${componente.descripcion}</p>
+          <p className='fs-4'><strong>Descripción:</strong> ${componente.descripcion}</p>
         </div>
-
-      <section>
-        <h3>Productos</h3>
-        <ul>
-          {componente?.productos?.length > 0 ? (
-            componente.productos.map((producto) => (
-              <li key={producto.id}>
-                <a href={`/productos/${producto.id}`}>{producto.nombre}</a>
-              </li>
-            ))
-          ) : (
-            <p>No hay productos registrados para este componente.</p>
-          )}
-        </ul>
-      </section>
+        <div className="col-md-6">
+          <section>
+            <h3>Productos</h3>
+            <ul>
+              {componente?.productos?.length > 0 ? (
+                componente.productos.map((producto) => (
+                  <li key={producto.id}>
+                    <a className={Style.a1} href={`/productos/${producto.id}`}>{producto.nombre}</a>
+                  </li>
+                ))
+              ) : (
+                <p>No hay productos registrados para este componente.</p>
+              )}
+            </ul>
+          </section>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import img from '../assets/logoEmpresa.jpg';
+import Style from '../components/CardDeatails.module.css'
 
 interface Fabricante {
   id: number;
@@ -25,7 +27,7 @@ const FabricanteDetail = () => {
 
   async function cargarFabricante(id: string | undefined) {
     try {
-      
+
       const respuesta = await fetch(`http://localhost:5000/fabricantes/${id}`);
       const fabricanteData: Fabricante = await respuesta.json();
 
@@ -51,29 +53,31 @@ const FabricanteDetail = () => {
   return (
     <div className="container mt-5">
       <h2>{fabricante.nombre}</h2>
-
-        <div className="col-md-6">
-          <img src={fabricante.pathImgPerfil} alt={fabricante.nombre} className="img-fluid" />
+      <div className="row">
+        <div className="col-md-4">
+          <img src={img} alt={fabricante.nombre} className="img-fluid" />
         </div>
-        <div className="col-md-6">
+        <div className="col-md-4 fs-5">
           <p><strong>Dirección:</strong> {fabricante.direccion}</p>
           <p><strong>Contacto:</strong> ${fabricante.numeroContacto}</p>
         </div>
-
-      <section>
-        <h3>Productos</h3>
-        <ul>
-          {fabricante?.productos?.length > 0 ? (
-            fabricante.productos.map((producto) => (
-              <li key={producto.id}>
-                <a href={`/productos/${producto.id}`}>{producto.nombre}</a>
-              </li>
-            ))
-          ) : (
-            <p>No hay productos registrados para este fabricante.</p>
-          )}
-        </ul>
-      </section>
+        <div className="col-md-4">
+          <section >
+            <h3>Productos</h3>
+            <ul>
+              {fabricante?.productos?.length > 0 ? (
+                fabricante.productos.map((producto) => (
+                  <li key={producto.id}>
+                    <a className={Style.a1} href={`/productos/${producto.id}`}>{producto.nombre}</a>
+                  </li>
+                ))
+              ) : (
+                <p>No hay productos registrados para este fabricante.</p>
+              )}
+            </ul>
+          </section>
+        </div>
+      </div>
     </div>
   );
 };

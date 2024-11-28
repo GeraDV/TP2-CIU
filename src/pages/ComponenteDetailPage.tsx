@@ -8,7 +8,6 @@ const ComponenteDetailPage = () => {
     <div className={Style.bodyHome}>
       <Header />
       <main className="container mt-5">
-        <h2>Componente:</h2>
         <ComponenteDetail />
       </main>
       <Footer />

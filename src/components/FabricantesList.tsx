@@ -11,15 +11,15 @@ const FabricantesList = () => {
   }, []);
 
   return (
-    <div className="list-group">
+    <div className="list-group d-flex justify-content-center ">
       {fabricantes.map((fabricante: any) => (
-        <a
+        <p>
+          <a
           key={fabricante.id}
-          href={`/fabricantes/${fabricante.id}`}
-          className="list-group-item list-group-item-action"
-        >
-          {fabricante.nombre}
-        </a>
+           href={`/fabricantes/${fabricante.id}`}
+          className="list-group-item list-group-item-action d-flex justify-content-center fs-5">
+          {fabricante.nombre}</a>
+        </p>
       ))}
     </div>
   );

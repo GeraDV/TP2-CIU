@@ -67,8 +67,8 @@ const ProductDetail = () => {
           <img src={img} alt={producto.nombre} className="img-fluid" />
         </div>
         <div className="col-md-4">
-          <p><strong>Descripción:</strong> {producto.descripcion}</p>
-          <p><strong>Precio:</strong> ${producto.precio}</p>
+          <p className='fs-4'><strong>Descripción:</strong> {producto.descripcion}</p>
+          <p className='fs-3'><strong>Precio:</strong> ${producto.precio}</p>
         </div>
         <div className="col-md-2">
           <section>

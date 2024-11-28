@@ -13,13 +13,14 @@ const ComponentesList = () => {
   return (
     <div className="list-group">
       {componentes.map((componente: any) => (
-        <a
-          key={componente.id}
-          href={`/componentes/${componente.id}`}
-          className="list-group-item list-group-item-action"
-        >
-          {componente.nombre}
-        </a>
+        <p>
+          <a
+            key={componente.id}
+            href={`/componentes/${componente.id}`}
+            className="list-group-item list-group-item-action d-flex justify-content-center fs-5">
+            {componente.nombre}
+          </a>
+        </p>
       ))}
     </div>
   );
