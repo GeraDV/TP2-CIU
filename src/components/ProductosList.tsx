@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import ProductCard from './ProductoCard';
-import imgPrueba from '../assets/logoEmpresa.jpg'
 
 const ProductosList = () => {
   const [productos, setProductos] = useState([]);
