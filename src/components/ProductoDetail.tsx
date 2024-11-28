@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import img from '../assets/logoEmpresa.jpg'
+import Style from '../components/CardDeatails.module.css'
 
 interface Fabricante {
   id: number;
@@ -60,44 +62,47 @@ const ProductDetail = () => {
   return (
     <div className="container mt-5">
       <h2>{producto.nombre}</h2>
-
-        <div className="col-md-6">
-          <img src={producto.imageUrl} alt={producto.nombre} className="img-fluid" />
+      <div className="row">
+        <div className="col-md-4">
+          <img src={img} alt={producto.nombre} className="img-fluid" />
         </div>
-        <div className="col-md-6">
+        <div className="col-md-4">
           <p><strong>Descripción:</strong> {producto.descripcion}</p>
           <p><strong>Precio:</strong> ${producto.precio}</p>
         </div>
-
-      <section>
-        <h3>Fabricantes</h3>
-        <ul>
-          {producto?.fabricantes?.length > 0 ? (
-            producto.fabricantes.map((fabricante) => (
-              <li key={fabricante.id}>
-                <a href={`/fabricantes/${fabricante.id}`}>{fabricante.nombre}</a>
-              </li>
-            ))
-          ) : (
-            <p>No hay fabricantes registrados para este producto.</p>
-          )}
-        </ul>
-      </section>
-
-      <section>
-        <h3>Componentes</h3>
-        <ul>
-          {producto?.componentes?.length > 0 ? (
-            producto.componentes.map((componente) => (
-              <li key={componente.id}>
-                <a href={`/componentes/${componente.id}`}>{componente.nombre}</a>
-              </li>
-            ))
-          ) : (
-            <p>No hay componentes registrados para este producto.</p>
-          )}
-        </ul>
-      </section>
+        <div className="col-md-2">
+          <section>
+            <h3>Fabricantes</h3>
+            <ul>
+              {producto?.fabricantes?.length > 0 ? (
+                producto.fabricantes.map((fabricante) => (
+                  <li key={fabricante.id}>
+                    <a className={Style.a1} href={`/fabricantes/${fabricante.id}`}>{fabricante.nombre} </a>
+                  </li>
+                ))
+              ) : (
+                <p>No hay fabricantes registrados para este producto.</p>
+              )}
+            </ul>
+          </section>
+        </div>
+        <div className="col-md-2">
+          <section>
+            <h3>Componentes</h3>
+            <ul>
+              {producto?.componentes?.length > 0 ? (
+                producto.componentes.map((componente) => (
+                  <li key={componente.id}>
+                    <a className={Style.a1} href={`/componentes/${componente.id}`}>{componente.nombre}</a>
+                  </li>
+                ))
+              ) : (
+                <p>No hay componentes registrados para este producto.</p>
+              )}
+            </ul>
+          </section>
+        </div>
+      </div>
     </div>
   );
 };

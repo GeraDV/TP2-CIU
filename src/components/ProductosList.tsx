@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import ProductCard from './ProductoCard';
+import imgPrueba from '../assets/logoEmpresa.jpg'
 
 const ProductosList = () => {
   const [productos, setProductos] = useState([]);
@@ -12,7 +13,7 @@ const ProductosList = () => {
   }, []);
 
   return (
-    <div className="d-flex flex-wrap">
+    <div className="d-flex flex-wrap justify-content-center gap-3">
       {productos.map((producto: any) => (
         <ProductCard
           key={producto.id}
@@ -20,7 +21,7 @@ const ProductosList = () => {
           nombre={producto.nombre}
           description={producto.descripcion}
           price={producto.precio}
-          imageUrl={producto.imageUrl}
+          imageUrl={imgPrueba}
         />
       ))}
     </div>

@@ -1,0 +1,10 @@
+.a1{
+    text-decoration: none;
+    color: white;
+}
+
+.a1:hover{
+    transition: 0.8s;
+    font-size: 20px;
+    color :rgb(19, 18, 18);   
+}

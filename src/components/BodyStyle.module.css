@@ -1,0 +1,62 @@
+body{
+    background: linear-gradient(rgb(74,109,66), rgb(32,59,61));
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vh;
+    height: 50vh;
+    border-radius: 8%;
+}
+
+.bodyHome{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    font-family: "Merienda", cursive;
+    text-align: center;
+    margin-top: 25px;
+    font-size: 18px;
+}
+
+.title{
+    font-family: "Merienda", cursive;
+    margin-top: 25px
+}
+
+.img{
+    width: 43%;
+    border-radius: 8%;
+}
+
+.imagenesDelBody{
+    display: flex;
+    justify-content: space-around;
+}
+
+.imggap{
+    padding: 40px;
+}
+
+.styleVideo{
+    display: flex;
+    justify-content: center;
+    padding: 3%;
+}
+
+.fuente{
+    font-family: "Merienda", cursive;
+    color: #ffffff;
+}
+
+
