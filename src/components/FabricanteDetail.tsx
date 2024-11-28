@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import img from '../assets/logoEmpresa.jpg';
 import Style from '../components/CardDeatails.module.css'
 
 interface Fabricante {
