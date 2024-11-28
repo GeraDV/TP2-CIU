@@ -21,7 +21,7 @@ const ProductosList = () => {
           nombre={producto.nombre}
           description={producto.descripcion}
           price={producto.precio}
-          imageUrl={imgPrueba}
+          imageUrl={`/${producto.pathImg}`}
         />
       ))}
     </div>

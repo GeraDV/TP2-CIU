@@ -55,7 +55,7 @@ const FabricanteDetail = () => {
       <h2>{fabricante.nombre}</h2>
       <div className="row">
         <div className="col-md-4">
-          <img src={img} alt={fabricante.nombre} className="img-fluid" />
+          <img src={`/${fabricante.pathImgPerfil}`} alt={fabricante.nombre} className="img-fluid" />
         </div>
         <div className="col-md-4 fs-5">
           <p><strong>Dirección:</strong> {fabricante.direccion}</p>
