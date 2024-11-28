@@ -42,7 +42,7 @@ const ComponenteDetail = () => {
   }, [id]);
 
   if (!componente) {
-    return <div>Componente no encontrado</div>;
+    return <div className='pt-5 pb-5 fs-1 mt-5 mb-5'>Componente no encontrado</div>;
   }
 
   return (

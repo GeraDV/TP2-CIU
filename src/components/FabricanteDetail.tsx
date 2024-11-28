@@ -46,7 +46,7 @@ const FabricanteDetail = () => {
   }, [id]);
 
   if (!fabricante) {
-    return <div>Fabricante no encontrado</div>;
+    return <div className='pt-5 pb-5 fs-1 mt-5 mb-5'>Fabricante no encontrado</div>;
   }
 
   return (

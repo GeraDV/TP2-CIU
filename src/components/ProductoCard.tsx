@@ -12,7 +12,7 @@ interface ProductCardProps {
 const ProductCard = ({ id, nombre, description, price, imageUrl }: ProductCardProps) => {
   return (
     <div className="card" style={{ width: '16rem' }}>
-      <img src={imageUrl} className="card-img-top" alt={nombre} />
+      <img src={imageUrl} className="card-img-top w-100 h-50" alt={nombre} />
       <div className={`card-body ${Style.interiorCarta}`}>
         <h5 className="card-title">{nombre}</h5>
         <p className="card-text">{description}</p>
