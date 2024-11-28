@@ -3,7 +3,7 @@ import Style from "./FooterStyle.module.css"
 const Footer = () => {
   return (
     <div className={Style.fuente}>
-      <footer className="py-3">
+      <footer className="pt-5 mt-5">
       <ul className="pt-3 nav justify-content-center border-bottom pb-1 mb-1 mt-2">
           <li className="nav-item"><p className="px-2 nav justify-content-center pb-2 mb-1"><strong>Dirección:</strong>&#160; Calle falsa 123</p></li>
           <li className="nav-item"><p className="px-2 nav justify-content-center pb-2 mb-1"><strong>Telefono:</strong>&#160;+54 11 12345678</p></li>

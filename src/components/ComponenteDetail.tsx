@@ -1,6 +1,5 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import img from '../assets/logoEmpresa.jpg';
 import Style from '../components/CardDeatails.module.css'
 
 interface Componente {
@@ -60,7 +59,7 @@ const ComponenteDetail = () => {
               {componente?.productos?.length > 0 ? (
                 componente.productos.map((producto) => (
                   <li key={producto.id}>
-                    <a className={Style.a1} href={`/productos/${producto.id}`}>{producto.nombre}</a>
+                    <Link className={Style.a1} to={`/productos/${producto.id}`}>{producto.nombre}</Link>
                   </li>
                 ))
               ) : (

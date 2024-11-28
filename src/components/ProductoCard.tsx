@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Style from './CardStyle.module.css'
 
 interface ProductCardProps {
@@ -16,7 +17,7 @@ const ProductCard = ({ id, nombre, description, price, imageUrl }: ProductCardPr
         <h5 className="card-title">{nombre}</h5>
         <p className="card-text">{description}</p>
         <p className="card-text"> <strong>${price}</strong></p>
-        <a href={`/productos/${id}`} className="btn btn-success">Ver más</a>
+        <Link to={`/productos/${id}`} className="btn btn-success">Ver más</Link>
       </div>
     </div>
   );

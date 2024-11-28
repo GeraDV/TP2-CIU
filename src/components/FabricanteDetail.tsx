@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Style from '../components/CardDeatails.module.css'
 
@@ -67,7 +67,7 @@ const FabricanteDetail = () => {
               {fabricante?.productos?.length > 0 ? (
                 fabricante.productos.map((producto) => (
                   <li key={producto.id}>
-                    <a className={Style.a1} href={`/productos/${producto.id}`}>{producto.nombre}</a>
+                    <Link className={Style.a1} to={`/productos/${producto.id}`}>{producto.nombre}</Link>
                   </li>
                 ))
               ) : (

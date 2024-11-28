@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const FabricantesList = () => {
   const [fabricantes, setFabricantes] = useState([]);
@@ -14,11 +15,11 @@ const FabricantesList = () => {
     <div className="list-group d-flex justify-content-center ">
       {fabricantes.map((fabricante: any) => (
         <p>
-          <a
+          <Link
           key={fabricante.id}
-           href={`/fabricantes/${fabricante.id}`}
+           to={`/fabricantes/${fabricante.id}`}
           className="list-group-item list-group-item-action d-flex justify-content-center fs-5">
-          {fabricante.nombre}</a>
+          {fabricante.nombre}</Link>
         </p>
       ))}
     </div>

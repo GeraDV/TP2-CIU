@@ -1,6 +1,5 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import img from '../assets/logoEmpresa.jpg'
 import Style from '../components/CardDeatails.module.css'
 
 interface Fabricante {
@@ -22,7 +21,7 @@ interface Producto {
   nombre: string;
   descripcion: string;
   precio: number;
-  imageUrl: string;
+  pathImg: string;
   fabricantes: Fabricante[];
   componentes: Componente[];
 }
@@ -56,7 +55,7 @@ const ProductDetail = () => {
   }, [id]);
 
   if (!producto) {
-    return <div>Producto no encontrado</div>;
+    return <div className='pt-5 pb-5 fs-1 mt-5 mb-5'><strong>PRODUCTO NO ENCONTRADO</strong></div>;
   }
 
   return (
@@ -64,7 +63,7 @@ const ProductDetail = () => {
       <h2>{producto.nombre}</h2>
       <div className="row">
         <div className="col-md-4">
-          <img src={img} alt={producto.nombre} className="img-fluid" />
+          <img src={`/${producto.pathImg}`} alt={producto.nombre} className="img-fluid" />
         </div>
         <div className="col-md-4">
           <p className='fs-4'><strong>Descripción:</strong> {producto.descripcion}</p>
@@ -77,7 +76,7 @@ const ProductDetail = () => {
               {producto?.fabricantes?.length > 0 ? (
                 producto.fabricantes.map((fabricante) => (
                   <li key={fabricante.id}>
-                    <a className={Style.a1} href={`/fabricantes/${fabricante.id}`}>{fabricante.nombre} </a>
+                    <Link className={Style.a1} to={`/fabricantes/${fabricante.id}`}>{fabricante.nombre} </Link>
                   </li>
                 ))
               ) : (
@@ -93,7 +92,7 @@ const ProductDetail = () => {
               {producto?.componentes?.length > 0 ? (
                 producto.componentes.map((componente) => (
                   <li key={componente.id}>
-                    <a className={Style.a1} href={`/componentes/${componente.id}`}>{componente.nombre}</a>
+                    <Link className={Style.a1} to={`/componentes/${componente.id}`}>{componente.nombre}</Link>
                   </li>
                 ))
               ) : (
